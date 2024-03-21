@@ -25,13 +25,13 @@ export const LoginForm = () => {
       showSocial
     >
       <Form {...form}>
-        <form 
-        className="space-y-6"
-        onSubmit={form.handleSubmit(() => {})}
+        <form
+          className="space-y-6"
+          onSubmit={form.handleSubmit(() => { })}
         >
           <div className="space-y-4">
-            <FormField 
-            name="email"
+            <FormField
+              name="email"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
@@ -46,6 +46,26 @@ export const LoginForm = () => {
                   </FormControl>
                   <FormMessage>
                     {form.formState.errors.email?.message}
+                  </FormMessage>
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="password"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="password"
+                      className="w-full"
+                      placeholder="******"
+                    />
+                  </FormControl>
+                  <FormMessage>
+                    {form.formState.errors.password?.message}
                   </FormMessage>
                 </FormItem>
               )}
