@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "@/schemas";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 export const LoginForm = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -71,6 +72,9 @@ export const LoginForm = () => {
               )}
             />
           </div>
+          <Button type="submit" className="w-full">
+            Sign in
+          </Button>
         </form>
       </Form>
     </CardWrapper>
