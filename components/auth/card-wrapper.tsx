@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { Header } from "./Header";
+import { Social } from "./social";
 
 interface CardWrapperProps {
   children: React.ReactNode;
@@ -26,6 +27,11 @@ export const CardWrapper = ({
       <CardContent>
         {children}
       </CardContent>
+      {showSocial && (
+        <CardFooter>
+          <Social />
+        </CardFooter>
+      )}
     </Card>
   )
 }
