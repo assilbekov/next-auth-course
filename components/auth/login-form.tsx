@@ -18,6 +18,11 @@ export const LoginForm = () => {
     },
   });
 
+  const onSubmit = (data: z.infer<typeof LoginSchema>) => {
+    // TODO: Add handler.
+    console.log(data);
+  }
+
   return (
     <CardWrapper
       headerLabel="Welcome back!"
@@ -28,7 +33,7 @@ export const LoginForm = () => {
       <Form {...form}>
         <form
           className="space-y-6"
-          onSubmit={form.handleSubmit(() => { })}
+          onSubmit={form.handleSubmit(onSubmit)}
         >
           <div className="space-y-4">
             <FormField
