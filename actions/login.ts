@@ -1,18 +1,14 @@
 "use server"
- 
-export const login = async (email: string, password: string) => {
-  console.log("Logging in with email", email);
-  /* const response = await fetch("/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  });
 
-  if (!response.ok) {
-    throw new Error("Failed to login");
+import * as z from "zod"
+import {LoginSchema} from "@/schemas"
+ 
+export const login = async (values: z.infer<typeof LoginSchema>) => {
+  const validatedFields = LoginSchema.safeParse(values);
+
+  if (!validatedFields.success) {
+    return {error: "Invalid fields!"};
   }
 
-  return response.json(); */
+  return {message: "Email sent!"}
 }
