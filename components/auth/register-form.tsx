@@ -12,6 +12,7 @@ import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { useState, useTransition } from "react";
 import { login } from "@/actions/login";
+import { register } from "@/actions/register";
 
 export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>("")
@@ -31,7 +32,7 @@ export const RegisterForm = () => {
     setError("")
     setSuccess("")
     startTransition(() => {
-      login(values)
+      register(values)
         .then((data) => {
           setError(data.error)
           setSuccess(data.message)
