@@ -84,7 +84,7 @@ export const RegisterForm = () => {
                       {...field}
                       disabled={isPending}
                       className="w-full"
-                      placeholder="john.doe@example.com"
+                      placeholder="John Doe"
                     />
                   </FormControl>
                   <FormMessage>
