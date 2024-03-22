@@ -93,8 +93,8 @@ export const LoginForm = () => {
               )}
             />
           </div>
-          <FormError message="Invalid credentials" />
-          <FormSuccess message="You have successfully signed in" />
+          <FormError message={error} />
+          <FormSuccess message={success} />
           <Button type="submit" className="w-full" disabled={isPending}>
             Sign in
           </Button>
