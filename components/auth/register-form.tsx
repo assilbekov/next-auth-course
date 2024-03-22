@@ -11,7 +11,6 @@ import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { useState, useTransition } from "react";
-import { login } from "@/actions/login";
 import { register } from "@/actions/register";
 
 export const RegisterForm = () => {
@@ -54,6 +53,26 @@ export const RegisterForm = () => {
         >
           <div className="space-y-4">
             <FormField
+              name="name"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      className="w-full"
+                      placeholder="John Doe"
+                    />
+                  </FormControl>
+                  <FormMessage>
+                    {form.formState.errors.name?.message}
+                  </FormMessage>
+                </FormItem>
+              )}
+            />
+            <FormField
               name="email"
               control={form.control}
               render={({ field }) => (
@@ -70,26 +89,6 @@ export const RegisterForm = () => {
                   </FormControl>
                   <FormMessage>
                     {form.formState.errors.email?.message}
-                  </FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="name"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      className="w-full"
-                      placeholder="John Doe"
-                    />
-                  </FormControl>
-                  <FormMessage>
-                    {form.formState.errors.name?.message}
                   </FormMessage>
                 </FormItem>
               )}
