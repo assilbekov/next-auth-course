@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/db"
 import authConfig from "./auth.config"
+import { getUserById } from "./data/user";
 
 export const {
   handlers: { GET, POST },
@@ -18,6 +19,14 @@ export const {
       return session;
     },
     async jwt({ token }) {
+      if(!token.sub) return token;
+
+      const existingUser = await getUserById(token.sub);
+
+      if(existingUser) {
+        token.role = existingUser.role;
+      }
+
       return token
     }
   },
