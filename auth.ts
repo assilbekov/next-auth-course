@@ -4,6 +4,14 @@ import { db } from "@/lib/db"
 import authConfig from "./auth.config"
 import { getUserById } from "./data/user";
 
+type USER_ROLE = "ADMIN" | "USER";
+
+declare module "next-auth" {
+  interface User {
+    role: USER_ROLE;
+  }
+}
+
 export const {
   handlers: { GET, POST },
   auth,
@@ -16,14 +24,18 @@ export const {
         session.user.id = token.sub
       }
 
+      if (token.role && session.user) {
+        session.user.role = token.role as USER_ROLE;
+      }
+
       return session;
     },
     async jwt({ token }) {
-      if(!token.sub) return token;
+      if (!token.sub) return token;
 
       const existingUser = await getUserById(token.sub);
 
-      if(existingUser) {
+      if (existingUser) {
         token.role = existingUser.role;
       }
 
