@@ -17,6 +17,11 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  pages: {
+    signIn: "/auth/login",
+    newUser: "/auth/register",
+    error: "/auth/error",
+  },
   events: {
     async linkAccount({user}) {
       await db.user.update({
