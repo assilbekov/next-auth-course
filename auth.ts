@@ -3,12 +3,11 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/db"
 import authConfig from "./auth.config"
 import { getUserById } from "./data/user";
-
-type USER_ROLE = "ADMIN" | "USER";
+import { UserRole } from "@prisma/client";
 
 declare module "next-auth" {
   interface User {
-    role: USER_ROLE;
+    role: UserRole;
   }
 }
 
@@ -25,7 +24,7 @@ export const {
       }
 
       if (token.role && session.user) {
-        session.user.role = token.role as USER_ROLE;
+        session.user.role = token.role as UserRole;
       }
 
       return session;
