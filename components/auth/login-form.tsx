@@ -38,8 +38,7 @@ export const LoginForm = () => {
       login(values)
         .then((data) => {
           setError(data?.error)
-          // TODO: handle success.
-          // setSuccess(data?.message)
+          setSuccess(data?.success)
         })
     })
   }
