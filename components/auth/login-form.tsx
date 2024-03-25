@@ -1,6 +1,7 @@
 "use client"
 
 import * as z from "zod"
+import Link from "next/link";
 import { useForm } from "react-hook-form"
 import { CardWrapper } from "./card-wrapper"
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -92,6 +93,9 @@ export const LoginForm = () => {
                       placeholder="******"
                     />
                   </FormControl>
+                  <Button size="sm" variant="link" asChild className="px-0 font-normal">
+                    <Link href="/auth/reset">Forgot password?</Link>
+                  </Button>
                   <FormMessage>
                     {form.formState.errors.password?.message}
                   </FormMessage>
