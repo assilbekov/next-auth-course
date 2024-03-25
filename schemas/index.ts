@@ -14,3 +14,7 @@ export const RegisterSchema = z.object({
   data => data.password === data.passwordConfirmation,
   { message: "Passwords must match", path: ["passwordConfirmation"] }
 );
+
+export const ResetSchema = z.object({
+  email: z.string().email(),
+});
