@@ -1,9 +1,8 @@
+import { ResetForm } from "@/components/auth/reset-form";
 
 
 export default function ResetPage() {
   return (
-    <div>
-      <h1>Reset Page</h1>
-    </div>
+    <ResetForm />
   )
 }
