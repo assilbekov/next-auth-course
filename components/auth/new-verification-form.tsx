@@ -14,7 +14,7 @@ export const NewVerificationForm = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
-  const onSubmit = useCallback(() => {
+  useState(() => {
     if (!token) {
       setError("Token not found")
       return
@@ -28,11 +28,7 @@ export const NewVerificationForm = () => {
       .catch(() => {
         setError("An error occurred")
       })
-  }, [token])
-
-  useEffect(() => {
-    onSubmit();
-  }, [onSubmit])
+  })
 
   return (
     <CardWrapper
