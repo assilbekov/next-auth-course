@@ -45,14 +45,12 @@ export const LoginForm = () => {
             return
           }
 
-          if (data?.success) {
-            form.reset();
-            setSuccess(data?.success)
-            return
-          }
-
           if (data?.twoFactor) {
             setShowTwoFactor(true)
+          }
+
+          if (data?.success) {
+            setSuccess(data?.success)
           }
         })
         .catch((error) => {
