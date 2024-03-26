@@ -12,7 +12,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div>
+    <div className="bg-white p-10 rounded-xl">
       <h1>Settings page</h1>
       <p>{JSON.stringify(user)}</p>
       <Button onClick={onClick}>Sign out</Button>
