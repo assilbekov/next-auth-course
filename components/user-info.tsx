@@ -38,6 +38,12 @@ export const UserInfo = ({ user, label }: UserInfoProps) => {
           <p className="text-sm font-medium">Email</p>
           <p className="truncate text-sm max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">{user.email}</p>
         </div>
+        <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+          <p className="text-sm font-medium">Two Factor Authentication</p>
+          <p className="truncate text-sm max-w-[180px] font-mono p-1 bg-slate-100 rounded-md">
+            {String(user.isTwoFactorEnabled)}
+          </p>
+        </div>
         <LogoutButton>Sign out</LogoutButton>
       </CardContent>
     </Card>
