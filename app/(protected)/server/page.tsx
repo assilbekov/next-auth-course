@@ -1,14 +1,17 @@
-import { auth } from "@/auth"
+import { UserInfo } from "@/components/user-info";
+import { currentUser } from "@/lib/auth";
 
 export default async function Page() {
-  const session = await auth();
+  const user = await currentUser();
+
+  if (!user) {
+    return <div>Loading...</div>
+  }
 
   return (
-    <div className="h-full flex items-center justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800">
-      <div className="bg-white p-10 rounded-xl">
-        <h1>Protected page</h1>
-        <p>Some content</p>
-      </div>
-    </div>
+    <UserInfo
+      user={user}
+      label="Server component"
+    />
   )
 }
