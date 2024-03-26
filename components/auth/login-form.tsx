@@ -75,51 +75,78 @@ export const LoginForm = () => {
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <div className="space-y-4">
-            <FormField
-              name="email"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      type="email"
-                      disabled={isPending}
-                      className="w-full"
-                      placeholder="john.doe@example.com"
-                    />
-                  </FormControl>
-                  <FormMessage>
-                    {form.formState.errors.email?.message}
-                  </FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="password"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      type="password"
-                      disabled={isPending}
-                      className="w-full"
-                      placeholder="******"
-                    />
-                  </FormControl>
-                  <Button size="sm" variant="link" asChild className="px-0 font-normal">
-                    <Link href="/auth/reset">Forgot password?</Link>
-                  </Button>
-                  <FormMessage>
-                    {form.formState.errors.password?.message}
-                  </FormMessage>
-                </FormItem>
-              )}
-            />
+            {!showTwoFactor ? (
+              <>
+                <FormField
+                  name="email"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="email"
+                          disabled={isPending}
+                          className="w-full"
+                          placeholder="john.doe@example.com"
+                        />
+                      </FormControl>
+                      <FormMessage>
+                        {form.formState.errors.email?.message}
+                      </FormMessage>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="password"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="password"
+                          disabled={isPending}
+                          className="w-full"
+                          placeholder="******"
+                        />
+                      </FormControl>
+                      <Button size="sm" variant="link" asChild className="px-0 font-normal">
+                        <Link href="/auth/reset">Forgot password?</Link>
+                      </Button>
+                      <FormMessage>
+                        {form.formState.errors.password?.message}
+                      </FormMessage>
+                    </FormItem>
+                  )}
+                />
+              </>
+            ) : (
+              <FormField
+                name="code"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Two-factor code</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="text"
+                        disabled={isPending}
+                        className="w-full"
+                        placeholder="123456"
+                      />
+                    </FormControl>
+                    <FormMessage>
+                      {form.formState.errors.code?.message}
+                    </FormMessage>
+                  </FormItem>
+                )}
+              />
+
+            )}
           </div>
           <FormError message={error || urlError} />
           <FormSuccess message={success} />
