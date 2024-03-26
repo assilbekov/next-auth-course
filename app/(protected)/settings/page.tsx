@@ -2,10 +2,10 @@
 
 import { logout } from "@/actions/logout";
 import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
+import { useCurrentUser } from "@/hooks";
 
 export default function SettingsPage() {
-  const session = useSession();
+  const user = useCurrentUser();
 
   const onClick = () => {
     logout();
@@ -14,7 +14,7 @@ export default function SettingsPage() {
   return (
     <div>
       <h1>Settings page</h1>
-      <p>{JSON.stringify(session)}</p>
+      <p>{JSON.stringify(user)}</p>
       <Button onClick={onClick}>Sign out</Button>
     </div>
   )
